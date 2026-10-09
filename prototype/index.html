@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ConductorOS — Smart Bus Ticketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Phone Frame (for demo purposes) -->
+    <div class="phone-frame">
+        
+        <!-- STATUS BAR -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="time" id="currentTime">15:46</span>
+            </div>
+            <div class="status-right">
+                <span class="connectivity-dot online" id="connectivityDot" title="Online"></span>
+                <span class="battery" id="batteryLevel">87%</span>
+                <svg class="battery-icon" width="20" height="12" viewBox="0 0 20 12">
+                    <rect x="0" y="0" width="17" height="12" rx="2" fill="none" stroke="#F0F0F5" stroke-width="1.5"/>
+                    <rect x="18" y="3" width="2" height="6" rx="1" fill="#F0F0F5"/>
+                    <rect x="2" y="2" width="13" height="8" rx="1" fill="#00E676" id="batteryFill"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- CONTEXT STRIP -->
+        <div class="context-strip">
+            <div class="route-badge">335E</div>
+            <div class="route-info">
+                <div class="route-direction">→ Kempegowda Bus Station</div>
+                <div class="current-stop">
+                    <span class="pulse-dot"></span>
+                    <span id="currentStop">Silk Board Junction</span>
+                    <span class="stage-label">Stage 4</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="main-content" id="mainContent">
+            
+            <!-- SCREEN: Destination Selection (Default) -->
+            <div class="screen active" id="screenDestination">
+                <div class="section-label">Quick Select</div>
+                <div class="destination-grid" id="destinationGrid">
+                    <!-- Populated by JS — Top 4 larger, bottom 4 compact -->
+                </div>
+
+                <button class="all-stops-btn" id="allStopsBtn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                    All Stops on Route
+                </button>
+            </div>
+
+            <!-- SCREEN: Ticket Configuration -->
+            <div class="screen" id="screenTicketConfig">
+                <!-- BACK BUTTON — lets conductor fix wrong destination tap -->
+                <button class="back-nav" id="backFromConfig">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"/>
+                    </svg>
+                    Change stop
+                </button>
+
+                <div class="selected-destination" id="selectedDestInfo">
+                    <div class="dest-name" id="destName">Majestic</div>
+                    <div class="dest-meta">
+                        <span class="dest-stages" id="destStages">3 stages</span>
+                        <span class="dest-fare" id="destFare">₹15</span>
+                        <span class="fare-label">per person</span>
+                    </div>
+                </div>
+
+                <div class="config-section">
+                    <div class="section-label">Passengers</div>
+                    <div class="passenger-selector" id="passengerSelector">
+                        <button class="pax-btn active" data-count="1">1</button>
+                        <button class="pax-btn" data-count="2">2</button>
+                        <button class="pax-btn" data-count="3">3</button>
+                        <button class="pax-btn" data-count="4">4</button>
+                        <button class="pax-btn" data-count="5">5+</button>
+                    </div>
+                </div>
+
+                <!-- PAYMENT — collapsed by default (cash is 80%+ default) -->
+                <div class="config-section">
+                    <button class="payment-toggle" id="paymentToggle">
+                        <span class="pay-current-label">💵 Cash</span>
+                        <span class="pay-change-hint">Change ▾</span>
+                    </button>
+                    <div class="payment-expandable" id="paymentExpandable">
+                        <div class="payment-selector" id="paymentSelector">
+                            <button class="pay-btn active" data-mode="cash">
+                                <span class="pay-icon">💵</span>
+                                Cash
+                            </button>
+                            <button class="pay-btn" data-mode="upi">
+                                <span class="pay-icon">📱</span>
+                                UPI
+                            </button>
+                            <button class="pay-btn" data-mode="pass">
+                                <span class="pay-icon">🎫</span>
+                                Pass
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fare-summary" id="fareSummary">
+                    <div class="fare-breakdown">
+                        <span class="fare-calc" id="fareCalc">₹15 × 1</span>
+                        <span class="fare-total" id="fareTotal">₹15</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCREEN: All Stops List -->
+            <div class="screen" id="screenAllStops">
+                <div class="search-bar">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+                        <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+                    </svg>
+                    <input type="text" placeholder="Search stop..." id="stopSearch" autocomplete="off">
+                </div>
+                <div class="stops-list" id="stopsList">
+                    <!-- Populated by JS -->
+                </div>
+                <button class="back-btn" id="backFromStops">
+                    ← Back to Quick Select
+                </button>
+            </div>
+
+            <!-- SCREEN: Success Confirmation -->
+            <div class="screen" id="screenSuccess">
+                <div class="success-animation">
+                    <div class="success-circle">
+                        <svg class="checkmark" width="80" height="80" viewBox="0 0 80 80">
+                            <circle class="checkmark-circle" cx="40" cy="40" r="36" fill="none" stroke="#00E676" stroke-width="3"/>
+                            <path class="checkmark-check" d="M24 42 L34 52 L56 30" fill="none" stroke="#00E676" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="success-text">Ticket Issued!</div>
+                    <div class="success-detail" id="successDetail">3 × Majestic — ₹45 Cash</div>
+                    <div class="success-time" id="successTime"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ACTION ZONE (always at bottom) -->
+        <div class="action-zone" id="actionZone">
+            <button class="issue-btn" id="issueBtn" disabled>
+                <span class="issue-text" id="issueText">Select Destination</span>
+            </button>
+        </div>
+
+        <!-- QUICK ACTIONS -->
+        <div class="quick-actions" id="quickActions">
+            <button class="quick-btn undo-btn" id="undoBtn" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 10h13a4 4 0 0 1 0 8H7"/>
+                    <polyline points="7 6 3 10 7 14"/>
+                </svg>
+                Undo
+            </button>
+            <button class="quick-btn repeat-btn" id="repeatBtn" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/>
+                    <path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>
+                </svg>
+                Repeat
+            </button>
+        </div>
+
+        <!-- TOAST NOTIFICATION -->
+        <div class="toast" id="toast">
+            <span class="toast-text" id="toastText"></span>
+        </div>
+
+        <!-- TIMER OVERLAY (for demo) -->
+        <div class="timer-overlay" id="timerOverlay">
+            <div class="timer-badge">
+                <span class="timer-value" id="timerValue">0.0s</span>
+                <span class="timer-label">Flow Timer</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DEMO CONTROLS (outside phone frame) -->
+    <div class="demo-controls">
+        <h2>🎯 ConductorOS</h2>
+        <p class="demo-subtitle">Nielsen Product Design Internship — Brief 1</p>
+        
+        <div class="demo-info-card">
+            <div class="demo-info-title">Design Philosophy</div>
+            <p>Optimized for the conductor's <strong>most common action</strong>: 1 passenger, 1 destination, cash payment. Every extra tap is a cost in a jerky, crowded bus.</p>
+        </div>
+        
+        <div class="demo-actions">
+            <button class="demo-btn" id="demoTimerToggle">⏱️ Toggle Flow Timer</button>
+            <button class="demo-btn" id="demoReset">🔄 Reset to Start</button>
+            <button class="demo-btn demo-btn-primary" id="demoAutoplay">▶️ Auto-Demo (3 Pax Flow)</button>
+        </div>
+        <div class="demo-stats">
+            <div class="stat">
+                <span class="stat-value" id="statTaps">0</span>
+                <span class="stat-label">Taps</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="statTime">0.0s</span>
+                <span class="stat-label">Time</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="statTickets">0</span>
+                <span class="stat-label">Tickets</span>
+            </div>
+        </div>
+        <p class="demo-note">
+            <strong>Target:</strong> 3 passengers, 1 destination, under 4 seconds.<br>
+            Try it yourself — tap a destination → set passengers → issue ticket!
+        </p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
