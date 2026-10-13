@@ -103,7 +103,7 @@
 }
 .sunlight-mode .phone-frame .route-direction { color: #555577; }
 .sunlight-mode .phone-frame .current-stop { color: #0A0A1A; }
-.sunlight-mode .phone-frame .stage-label { background: #E0E0EC; color: #444466; }
+.sunlight-mode .phone-frame .stage-label { background: #E2E2EE; border-color: #C8C8DC; color: #1A1A3A; font-weight: 700; }
 
 .sunlight-mode .phone-frame .section-label { color: #8888AA; }
 
@@ -465,14 +465,19 @@ input {
 }
 
 .stage-label {
-    font-size: var(--font-size-xs);
-    color: var(--text-muted);
+    font-size: 11px;
+    color: var(--text-secondary);
     font-weight: 600;
-    background: var(--bg-surface-elevated);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     padding: 2px 8px;
     border-radius: var(--radius-full);
     margin-left: auto;
     flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    letter-spacing: 0.2px;
 }
 
 /* --- Main Content Area --- */
