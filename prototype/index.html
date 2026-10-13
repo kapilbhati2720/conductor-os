@@ -88,13 +88,25 @@
                 </div>
 
                 <div class="config-section">
-                    <div class="section-label">Passengers</div>
+                    <div class="section-label-row">
+                        <span class="section-label">Passengers</span>
+                        <span class="pax-count-indicator" id="paxCountIndicator">1 Pax</span>
+                    </div>
                     <div class="passenger-selector" id="passengerSelector">
                         <button class="pax-btn active" data-count="1">1</button>
                         <button class="pax-btn" data-count="2">2</button>
                         <button class="pax-btn" data-count="3">3</button>
                         <button class="pax-btn" data-count="4">4</button>
-                        <button class="pax-btn" data-count="5">5+</button>
+                        <button class="pax-btn" data-count="5" id="paxBtn5">5+</button>
+                    </div>
+                    <!-- 5+ Group Stepper -->
+                    <div class="pax-stepper-row" id="paxStepperRow" style="display: none;">
+                        <span class="pax-stepper-label">Group count:</span>
+                        <div class="pax-stepper">
+                            <button class="pax-step-btn" id="paxMinus" type="button" aria-label="Decrease tickets">−</button>
+                            <span class="pax-step-value" id="paxStepValue">5</span>
+                            <button class="pax-step-btn" id="paxPlus" type="button" aria-label="Increase tickets">+</button>
+                        </div>
                     </div>
                 </div>
 

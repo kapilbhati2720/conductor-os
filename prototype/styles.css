@@ -160,6 +160,30 @@
     border-color: #1A5FCC;
     box-shadow: none;
 }
+.sunlight-mode .phone-frame .pax-stepper-row {
+    background: #F0F0F8;
+    border-color: #D0D0E0;
+}
+.sunlight-mode .phone-frame .pax-step-btn {
+    background: #E0E0EC;
+    color: #0A0A1A;
+    border-color: #C0C0D4;
+}
+.sunlight-mode .phone-frame .pax-step-btn:hover {
+    background: #1A5FCC;
+    color: #FFFFFF;
+}
+.sunlight-mode .phone-frame .pax-step-value {
+    color: #0A0A1A;
+}
+.sunlight-mode .phone-frame .pax-count-indicator {
+    background: #D0E0FF;
+    color: #1A3FCC;
+}
+.sunlight-mode .phone-frame .timer-badge {
+    background: #E65100;
+    color: #FFFFFF;
+}
 
 .sunlight-mode .phone-frame .payment-toggle {
     background: #F0F0F8;
@@ -763,6 +787,78 @@ input {
     box-shadow: var(--shadow-glow-blue);
 }
 
+.section-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.pax-count-indicator {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--accent-blue);
+    background: var(--accent-blue-dim);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+.pax-stepper-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--space-md);
+    padding: 8px 14px;
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(68, 138, 255, 0.25);
+    animation: fadeIn 0.2s var(--ease-out);
+}
+
+.pax-stepper-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.pax-stepper {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.pax-step-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-fast);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pax-step-btn:hover {
+    background: var(--accent-blue);
+    color: #FFFFFF;
+}
+
+.pax-step-btn:active {
+    transform: scale(0.92);
+}
+
+.pax-step-value {
+    font-size: var(--font-size-xl);
+    font-weight: 800;
+    color: var(--text-primary);
+    min-width: 24px;
+    text-align: center;
+}
+
 /* ==============================================
    PAYMENT — Collapsed by Default
    Cash is 80%+ of transactions. Don't show 3 options 
@@ -1143,41 +1239,44 @@ input {
     transform: translateX(-50%) translateY(0);
 }
 
-/* --- Timer Overlay --- */
+/* --- Timer Overlay (Repositioned below context strip to never block Fare Stage) --- */
 .timer-overlay {
     position: absolute;
-    top: 60px;
+    top: 104px;
     right: var(--space-lg);
     z-index: 200;
     display: none;
+    pointer-events: none;
 }
 
 .timer-overlay.active {
-    display: block;
+    display: flex;
 }
 
 .timer-badge {
     background: var(--accent-amber);
     color: #0A0A1A;
-    padding: 4px 12px;
+    padding: 3px 10px;
     border-radius: var(--radius-full);
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
+    gap: 6px;
     box-shadow: 0 0 15px rgba(255, 215, 64, 0.4);
 }
 
 .timer-value {
-    font-size: var(--font-size-md);
+    font-size: 12px;
     font-weight: 800;
+    font-variant-numeric: tabular-nums;
 }
 
 .timer-label {
     font-size: 9px;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.7;
+    letter-spacing: 0.8px;
+    opacity: 0.85;
 }
 
 /* ==============================================

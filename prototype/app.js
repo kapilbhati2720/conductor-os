@@ -227,8 +227,24 @@ function updateTicketConfig() {
     
     // Update passenger buttons
     document.querySelectorAll('.pax-btn').forEach(btn => {
-        btn.classList.toggle('active', parseInt(btn.dataset.count) === state.passengerCount);
+        const count = parseInt(btn.dataset.count);
+        if (count === 5) {
+            btn.classList.toggle('active', state.passengerCount >= 5);
+            btn.textContent = state.passengerCount > 5 ? `${state.passengerCount}` : '5+';
+        } else {
+            btn.classList.toggle('active', count === state.passengerCount);
+        }
     });
+    
+    // Update stepper row and indicator for 5+ groups
+    const stepperRow = $('paxStepperRow');
+    if (stepperRow) {
+        stepperRow.style.display = state.passengerCount >= 5 ? 'flex' : 'none';
+        $('paxStepValue').textContent = state.passengerCount;
+    }
+    if ($('paxCountIndicator')) {
+        $('paxCountIndicator').textContent = `${state.passengerCount} ${state.passengerCount === 1 ? 'Pax' : 'Pax'}`;
+    }
     
     // Update payment buttons
     document.querySelectorAll('.pay-btn').forEach(btn => {
@@ -245,7 +261,7 @@ function updateTicketConfig() {
 }
 
 function setPassengerCount(count) {
-    state.passengerCount = count;
+    state.passengerCount = Math.max(1, count);
     countTap();
     
     if (!state.flowStartTime) {
@@ -616,11 +632,33 @@ function bindEvents() {
         selectDestination(POPULAR_DESTINATIONS[index]);
     });
     
-    // Passenger count
+    // Passenger count (Supports 1-4 direct, and 5+ multi-tap increment)
     document.querySelectorAll('.pax-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            setPassengerCount(parseInt(btn.dataset.count));
+            const btnCount = parseInt(btn.dataset.count);
+            if (btnCount === 5) {
+                if (state.passengerCount >= 5) {
+                    setPassengerCount(state.passengerCount + 1);
+                } else {
+                    setPassengerCount(5);
+                }
+            } else {
+                setPassengerCount(btnCount);
+            }
         });
+    });
+    
+    // Stepper buttons for 5+ groups
+    $('paxMinus').addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (state.passengerCount > 1) {
+            setPassengerCount(state.passengerCount - 1);
+        }
+    });
+    
+    $('paxPlus').addEventListener('click', (e) => {
+        e.stopPropagation();
+        setPassengerCount(state.passengerCount + 1);
     });
     
     // Payment mode
