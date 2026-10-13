@@ -13,6 +13,9 @@
     <!-- Phone Frame (for demo purposes) -->
     <div class="phone-frame">
         
+        <!-- SUNLIGHT MODE BADGE (shows when in sunlight mode) -->
+        <div class="sunlight-badge">☀️ Sunlight Mode</div>
+        
         <!-- STATUS BAR -->
         <div class="status-bar">
             <div class="status-left">
@@ -48,6 +51,11 @@
             <!-- SCREEN: Destination Selection (Default) -->
             <div class="screen active" id="screenDestination">
                 <div class="section-label">Quick Select</div>
+                <!-- Quick-Issue mode indicator -->
+                <div class="quick-issue-badge" id="quickIssueBadge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    1-Tap Mode
+                </div>
                 <div class="destination-grid" id="destinationGrid">
                     <!-- Populated by JS — Top 4 larger, bottom 4 compact -->
                 </div>
@@ -208,6 +216,8 @@
         <div class="demo-actions">
             <button class="demo-btn" id="demoTimerToggle">⏱️ Toggle Flow Timer</button>
             <button class="demo-btn" id="demoReset">🔄 Reset to Start</button>
+            <button class="demo-btn" id="demoSunlight">☀️ Sunlight Mode</button>
+            <button class="demo-btn" id="demoQuickIssue">⚡ 1-Tap Mode</button>
             <button class="demo-btn demo-btn-primary" id="demoAutoplay">▶️ Auto-Demo (3 Pax Flow)</button>
         </div>
         <div class="demo-stats">

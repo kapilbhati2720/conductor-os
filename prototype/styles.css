@@ -78,6 +78,220 @@
     --phone-height: 844px;
 }
 
+/* ==============================================
+   ☀️ SUNLIGHT MODE — High-Contrast Outdoor Theme
+   Activated when conductor is in harsh outdoor glare.
+   White background beats mirror-like dark screens.
+   ============================================== */
+.sunlight-mode .phone-frame {
+    background: #FFFFFF;
+    border-color: #D0D0D8;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+.sunlight-mode .phone-frame .status-bar {
+    color: #333355;
+}
+.sunlight-mode .phone-frame .time { color: #0A0A1A; }
+.sunlight-mode .phone-frame .battery { color: #0A0A1A; }
+.sunlight-mode .phone-frame .battery-icon rect:first-of-type { stroke: #0A0A1A; }
+.sunlight-mode .phone-frame .battery-icon rect:nth-of-type(2) { fill: #0A0A1A; }
+
+.sunlight-mode .phone-frame .context-strip {
+    background: #F0F0F8;
+    border: 1px solid #D8D8E8;
+}
+.sunlight-mode .phone-frame .route-direction { color: #555577; }
+.sunlight-mode .phone-frame .current-stop { color: #0A0A1A; }
+.sunlight-mode .phone-frame .stage-label { background: #E0E0EC; color: #444466; }
+
+.sunlight-mode .phone-frame .section-label { color: #8888AA; }
+
+.sunlight-mode .phone-frame .dest-card {
+    background: #F5F5FC;
+    border-color: transparent;
+}
+.sunlight-mode .phone-frame .dest-card-top:hover,
+.sunlight-mode .phone-frame .dest-card-top:active {
+    background: #E8E8F5;
+    border-color: #1A5FCC;
+}
+.sunlight-mode .phone-frame .dest-card-sm:hover,
+.sunlight-mode .phone-frame .dest-card-sm:active {
+    background: #E8E8F5;
+    border-color: #1A5FCC;
+}
+.sunlight-mode .phone-frame .dest-card-top .dest-card-name { color: #0A0A1A; }
+.sunlight-mode .phone-frame .dest-card-top .dest-card-fare { color: #0A0A1A; }
+.sunlight-mode .phone-frame .dest-card-top .dest-card-stages { color: #8888AA; }
+.sunlight-mode .phone-frame .dest-card-sm .dest-card-name { color: #333355; }
+.sunlight-mode .phone-frame .dest-card-sm .dest-card-fare { color: #333355; }
+
+.sunlight-mode .phone-frame .all-stops-btn {
+    background: #F0F0F8;
+    color: #555577;
+}
+.sunlight-mode .phone-frame .all-stops-btn:hover {
+    background: #E8E8F5;
+    color: #0A0A1A;
+}
+
+.sunlight-mode .phone-frame .back-nav { color: #8888AA; }
+.sunlight-mode .phone-frame .back-nav:hover { color: #0A0A1A; }
+
+.sunlight-mode .phone-frame .selected-destination {
+    background: linear-gradient(135deg, #EEEEF8, #F8F8FF);
+    border-color: rgba(26,95,204,0.2);
+}
+.sunlight-mode .phone-frame .dest-name { color: #0A0A1A; }
+.sunlight-mode .phone-frame .dest-meta .dest-fare { color: #0A0A1A; }
+.sunlight-mode .phone-frame .dest-stages { color: #8888AA; }
+.sunlight-mode .phone-frame .fare-label { color: #8888AA; }
+
+.sunlight-mode .phone-frame .pax-btn {
+    background: #F0F0F8;
+    color: #555577;
+    border-color: transparent;
+}
+.sunlight-mode .phone-frame .pax-btn:hover { background: #E8E8F5; color: #0A0A1A; }
+.sunlight-mode .phone-frame .pax-btn.active {
+    background: #D0E0FF;
+    color: #1A3FCC;
+    border-color: #1A5FCC;
+    box-shadow: none;
+}
+
+.sunlight-mode .phone-frame .payment-toggle {
+    background: #F0F0F8;
+    color: #0A0A1A;
+}
+.sunlight-mode .phone-frame .payment-toggle:hover { background: #E8E8F5; }
+.sunlight-mode .phone-frame .pay-current-label { color: #0A0A1A; }
+.sunlight-mode .phone-frame .pay-change-hint { color: #8888AA; }
+.sunlight-mode .phone-frame .pay-btn {
+    background: #F0F0F8;
+    color: #555577;
+}
+.sunlight-mode .phone-frame .pay-btn:hover { background: #E8E8F5; color: #0A0A1A; }
+.sunlight-mode .phone-frame .pay-btn.active {
+    background: #D0E0FF;
+    color: #1A3FCC;
+    border-color: #1A5FCC;
+}
+
+.sunlight-mode .phone-frame .fare-summary { background: #F0F0F8; }
+.sunlight-mode .phone-frame .fare-calc { color: #555577; }
+.sunlight-mode .phone-frame .fare-total { color: #0A0A1A; }
+
+.sunlight-mode .phone-frame .issue-btn {
+    background: linear-gradient(135deg, #1A5FCC, #2979FF);
+    color: #FFFFFF;
+    box-shadow: 0 0 20px rgba(26,95,204,0.4);
+}
+.sunlight-mode .phone-frame .issue-btn:hover:not(:disabled) {
+    box-shadow: 0 0 30px rgba(41,121,255,0.6);
+}
+.sunlight-mode .phone-frame .issue-btn:disabled {
+    background: #E0E0EC;
+    color: #9090AA;
+    box-shadow: none;
+}
+.sunlight-mode .phone-frame .issue-btn.undo-mode {
+    background: linear-gradient(135deg, #C62828, #E53935);
+    color: #FFFFFF;
+}
+
+.sunlight-mode .phone-frame .quick-btn {
+    background: #F0F0F8;
+    color: #555577;
+}
+.sunlight-mode .phone-frame .quick-btn:hover:not(:disabled) {
+    background: #E8E8F5;
+    color: #0A0A1A;
+}
+.sunlight-mode .phone-frame .quick-btn:disabled { opacity: 0.35; }
+
+.sunlight-mode .phone-frame .search-bar {
+    background: #F0F0F8;
+    border-color: transparent;
+}
+.sunlight-mode .phone-frame .search-bar:focus-within { border-color: #1A5FCC; }
+.sunlight-mode .phone-frame .search-bar input { color: #0A0A1A; }
+.sunlight-mode .phone-frame .search-bar input::placeholder { color: #9090AA; }
+
+.sunlight-mode .phone-frame .stop-item {
+    background: #F5F5FC;
+    color: #0A0A1A;
+}
+.sunlight-mode .phone-frame .stop-item:hover { background: #E8E8F5; }
+.sunlight-mode .phone-frame .stop-item .stop-fare { color: #444466; }
+.sunlight-mode .phone-frame .stop-item.current {
+    border-left-color: #1A5FCC;
+    background: #D0E0FF;
+}
+.sunlight-mode .phone-frame .back-btn {
+    background: #F0F0F8;
+    color: #555577;
+}
+.sunlight-mode .phone-frame .back-btn:hover { background: #E8E8F5; color: #0A0A1A; }
+
+.sunlight-mode .phone-frame .success-animation { background: #FFFFFF; }
+.sunlight-mode .phone-frame .success-text { color: #1A7A40; }
+.sunlight-mode .phone-frame .success-detail { color: #333355; }
+.sunlight-mode .phone-frame .success-time { color: #8888AA; }
+.sunlight-mode .phone-frame .checkmark-circle { stroke: #1A7A40; }
+.sunlight-mode .phone-frame .checkmark-check { stroke: #1A7A40; }
+
+.sunlight-mode .phone-frame .toast {
+    background: #333355;
+    color: #FFFFFF;
+}
+
+/* ☀️ Sunlight badge — floats inside status bar area */
+.sunlight-badge {
+    display: none;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FFB300;
+    color: #0A0A1A;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: var(--radius-full);
+    z-index: 300;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.sunlight-mode .sunlight-badge { display: block; }
+
+/* ⚡ Quick-Issue mode badge — appears below section label on main screen */
+.quick-issue-badge {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0, 230, 118, 0.12);
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    border-radius: var(--radius-full);
+    padding: 4px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent-green);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: var(--space-md);
+    width: fit-content;
+}
+.quick-issue-mode .quick-issue-badge { display: flex; }
+.sunlight-mode .quick-issue-badge {
+    background: rgba(26, 95, 204, 0.12);
+    border-color: rgba(26, 95, 204, 0.3);
+    color: #1A5FCC;
+}
+
 /* --- Reset & Base --- */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -1098,15 +1312,55 @@ input {
     }
 }
 
-@media (max-width: 420px) {
+/* On actual mobile phones (evaluator uses their phone on GitHub Pages),
+   phone frame fills screen and demo controls become a compact footer bar */
+@media (max-width: 500px) {
+    body {
+        flex-direction: column;
+        padding: 0;
+        gap: 0;
+        background: var(--bg-primary);
+    }
+    
     .phone-frame {
         width: 100%;
-        height: 100vh;
+        height: auto;
+        min-height: calc(100svh - 100px);
         border-radius: 0;
         border: none;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    
+    .sunlight-mode .phone-frame {
+        border-bottom: 1px solid #D0D0D8;
     }
     
     .demo-controls {
+        padding-top: 0;
+        max-width: 100%;
+        width: 100%;
+        padding: 8px 12px 16px;
+    }
+    
+    .demo-controls h2,
+    .demo-subtitle,
+    .demo-info-card,
+    .demo-stats,
+    .demo-note {
         display: none;
+    }
+    
+    .demo-actions {
+        flex-direction: row;
+        gap: 6px;
+        margin-bottom: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+    
+    .demo-btn {
+        white-space: nowrap;
+        padding: 8px 12px;
+        font-size: 12px;
     }
 }

@@ -55,6 +55,8 @@ let state = {
     showTimer: false,
     autoResetTimeout: null, // Track timeout to prevent race condition
     isUndoWindow: false,    // Are we in the post-ticket undo window?
+    sunlightMode: false,    // ☀️ High-contrast outdoor theme
+    quickIssueMode: false,  // ⚡ 1-tap direct issue (1 pax, cash assumed)
 };
 
 // ==========================================
@@ -179,7 +181,17 @@ function selectDestination(dest) {
     state.selectedDestination = dest;
     state.passengerCount = 1;
     
-    // Start flow timer on first meaningful interaction
+    // ⚡ QUICK ISSUE MODE: 1 pax cash ticket issued instantly on destination tap
+    if (state.quickIssueMode) {
+        startFlowTimer();
+        countTap();
+        triggerHaptic('tap');
+        issueTicket(); // Issue immediately, undo toast appears
+        showToast(`⚡ Quick Issue: ₹${dest.fare} • Tap UNDO to cancel`);
+        return;
+    }
+    
+    // Normal mode: go to config screen
     if (!state.flowStartTime) {
         startFlowTimer();
     }
@@ -547,6 +559,52 @@ function togglePaymentOptions() {
 }
 
 // ==========================================
+// ☀️ SUNLIGHT MODE TOGGLE
+// ==========================================
+function toggleSunlightMode() {
+    state.sunlightMode = !state.sunlightMode;
+    document.body.classList.toggle('sunlight-mode', state.sunlightMode);
+    
+    const btn = $('demoSunlight');
+    if (state.sunlightMode) {
+        btn.textContent = '🌙 Dark Mode';
+        btn.style.background = 'rgba(255, 179, 0, 0.15)';
+        btn.style.color = '#FFB300';
+        btn.style.borderColor = 'rgba(255,179,0,0.3)';
+        showToast('☀️ Sunlight mode — outdoor high-contrast');
+    } else {
+        btn.textContent = '☀️ Sunlight Mode';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+        showToast('🌙 Dark mode restored');
+    }
+}
+
+// ==========================================
+// ⚡ QUICK ISSUE MODE TOGGLE
+// ==========================================
+function toggleQuickIssueMode() {
+    state.quickIssueMode = !state.quickIssueMode;
+    document.body.classList.toggle('quick-issue-mode', state.quickIssueMode);
+    
+    const btn = $('demoQuickIssue');
+    if (state.quickIssueMode) {
+        btn.textContent = '⚡ 1-Tap: ON';
+        btn.style.background = 'rgba(0, 230, 118, 0.15)';
+        btn.style.color = '#00E676';
+        btn.style.borderColor = 'rgba(0,230,118,0.3)';
+        showToast('⚡ 1-Tap mode: tap destination = instant ticket');
+    } else {
+        btn.textContent = '⚡ 1-Tap Mode';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.style.borderColor = '';
+        showToast('Normal mode restored');
+    }
+}
+
+// ==========================================
 // EVENT BINDINGS
 // ==========================================
 function bindEvents() {
@@ -636,4 +694,8 @@ function bindEvents() {
     });
     
     $('demoAutoplay').addEventListener('click', runAutoDemo);
+    
+    // Sunlight & Quick-Issue toggles
+    $('demoSunlight').addEventListener('click', toggleSunlightMode);
+    $('demoQuickIssue').addEventListener('click', toggleQuickIssueMode);
 }
