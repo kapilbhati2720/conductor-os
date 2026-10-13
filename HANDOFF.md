@@ -120,22 +120,17 @@ There are **no build tools**, no Node dependencies, and no package managers requ
 
 ### 🔴 Day 3 (Oct 13 — SUBMISSION DAY) — TODO
 
-#### Step 1: Push to GitHub and Enable GitHub Pages (5 min)
-1. Go to [github.com/new](https://github.com/new)
-2. Create repo: `conductor-os` → Public → **Do NOT initialize with README**
-3. Run in terminal:
-   ```powershell
-   git remote add origin https://github.com/kapilbhati2720/conductor-os.git
-   git push -u origin main
-   ```
-4. Go to repo Settings → Pages → Source: `main` branch → `/` (root) → Save
-5. Live URL will be: `https://kapilbhati2720.github.io/conductor-os/prototype/`
+#### Step 1: Push to GitHub and Enable GitHub Pages ✅ PUSHED
+1. Repository pushed to: `https://github.com/kapilbhati2720/conductor-os`
+2. **Action Required by you in browser (1 minute)**:
+   - Open: [github.com/kapilbhati2720/conductor-os/settings/pages](https://github.com/kapilbhati2720/conductor-os/settings/pages)
+   - Under **Build and deployment** → **Branch**: Select `main` branch, folder `/ (root)` → Click **Save**.
+   - Your live URL is active at: `https://kapilbhati2720.github.io/conductor-os/prototype/`
 
-#### Step 2: Generate QR Code (2 min)
-1. Go to [qr-code-generator.com](https://www.qr-code-generator.com/)
-2. Paste: `https://kapilbhati2720.github.io/conductor-os/prototype/`
-3. Download as PNG
-4. Drop the QR code into **Slide 14** of the deck
+#### Step 2: Generate QR Code ✅ COMPLETED
+- QR code automatically generated and saved to: [`submission/qr-code.png`](file:///d:/Neilser/submission/qr-code.png)
+- Direct link encoded: `https://kapilbhati2720.github.io/conductor-os/prototype/`
+- Simply copy/drop this image into **Slide 14** of your deck!
 
 #### Step 3: Assemble Google Slides (30–40 min)
 1. Open Google Slides → New Presentation
