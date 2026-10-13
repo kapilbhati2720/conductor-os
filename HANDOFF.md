@@ -111,16 +111,49 @@ There are **no build tools**, no Node dependencies, and no package managers requ
 - [x] Prototype v2 implemented (Pareto grid, neutral fares, back navigation, undo race condition fix).
 - [x] Slide deck 16-slide outline formulated.
 
-### 🟡 Day 2 (Oct 10) — NEXT UP (Your Focus)
-- [ ] **Sunlight Mode Toggle**: Add a quick high-contrast outdoor/sunlight theme toggle (crucial for showing real-world conductor awareness).
-- [ ] **1-Tap Quick Issue Mode (Optional setting)**: Toggle between "Tap destination opens config" vs "Tap destination issues 1-pax cash ticket immediately" with a toast.
-- [ ] **Google Slides Production**: Populate the 16 slides in Google Slides using `submission/slides-outline.md`.
-- [ ] **Visual Assets & Screen Captures**: Take high-res mockups or GIF recordings of the prototype to embed directly into the slides.
+### ✅ Day 2 (Oct 12) — COMPLETED
+- [x] **Sunlight Mode** added: full white high-contrast theme toggled via demo bar (`☀️ Sunlight Mode` button). Amber `☀️ SUNLIGHT MODE` badge appears inside phone frame. All 30+ elements (cards, buttons, text, CTA) individually mapped to outdoor-readable light palette.
+- [x] **1-Tap Quick Issue Mode** added: toggle (`⚡ 1-Tap Mode` button) that bypasses config screen — tapping a destination instantly issues a 1-pax cash ticket with a 5-second undo toast. Visual `⚡ 1-TAP MODE` badge shown on main screen.
+- [x] **Mobile responsive layout improved**: phones ≤500px wide (evaluator's actual device) now show a compact horizontal scrollable demo bar instead of hiding it, so Sunlight/Quick-Issue toggles remain accessible on the evaluator's phone.
+- [x] **Full 16-slide Google Slides content written**: see `submission/slides-content.md` — every slide has headline, body copy, visual description, and speaker notes ready to paste.
+- [x] Git committed: `feat: add sunlight mode, 1-tap quick-issue mode, mobile responsive layout`
 
-### ⬜ Day 3 (Oct 11) — Final Polish & Submission
-- [ ] **Deploy to GitHub Pages**: Push the repository to GitHub and enable GitHub Pages so Nielsen evaluators can test the prototype on their actual phones via a live URL and QR code.
-- [ ] **Slide Deck Review & Export**: Review typography (Inter), contrast, and storytelling flow.
-- [ ] **Final Submission Package Verification**: Ensure links, prototype URL, and slide deck permissions ("Anyone with link can view") are set.
+### 🔴 Day 3 (Oct 13 — SUBMISSION DAY) — TODO
+
+#### Step 1: Push to GitHub and Enable GitHub Pages (5 min)
+1. Go to [github.com/new](https://github.com/new)
+2. Create repo: `conductor-os` → Public → **Do NOT initialize with README**
+3. Run in terminal:
+   ```powershell
+   git remote add origin https://github.com/kapilbhati2720/conductor-os.git
+   git push -u origin main
+   ```
+4. Go to repo Settings → Pages → Source: `main` branch → `/` (root) → Save
+5. Live URL will be: `https://kapilbhati2720.github.io/conductor-os/prototype/`
+
+#### Step 2: Generate QR Code (2 min)
+1. Go to [qr-code-generator.com](https://www.qr-code-generator.com/)
+2. Paste: `https://kapilbhati2720.github.io/conductor-os/prototype/`
+3. Download as PNG
+4. Drop the QR code into **Slide 14** of the deck
+
+#### Step 3: Assemble Google Slides (30–40 min)
+1. Open Google Slides → New Presentation
+2. **Theme**: Set background to `#0A0A1A` for all slides
+3. **Font**: Use "Inter" from Google Fonts (available in Google Slides)
+4. Follow `submission/slides-content.md` for each slide's exact text
+5. **Screenshots to take for the slides** (open prototype/index.html):
+   - Dark mode main grid → for Slide 9
+   - Ticket config screen → for Slide 10
+   - Success screen → for Slide 11
+   - Sunlight mode vs dark mode side by side → for Slide 12
+   - Take screenshots at 390px width (use Chrome DevTools device emulation → iPhone 14 Pro)
+
+#### Step 4: Share & Submit (5 min)
+1. In Google Slides → Share → "Anyone with the link can view"
+2. Copy the link
+3. Submit: Slides link + GitHub live URL + (optionally) GitHub repo URL
+
 
 ---
 
